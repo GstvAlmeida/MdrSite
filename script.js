@@ -208,18 +208,82 @@ document.addEventListener('DOMContentLoaded', () => {
         URL.revokeObjectURL(link.href);
     }
 
-    function salvarHistorico(sourceId, historyId) {
-        const atual = document.getElementById(sourceId).value;
-        const historico = document.getElementById(historyId);
-        if(atual) {
-            const timestamp = new Date().toLocaleString('pt-BR');
-            const separador = "\n\n========================================\n\n";
-            historico.value = `[Salvo em: ${timestamp}]\n${atual}${historico.value ? separador + historico.value : ""}`;
-            alert("Análise salva no histórico!");
-        } else {
-            alert("Nada para salvar. Gere uma análise primeiro.");
+        // URL do seu App da Web do Google Apps Script
+    const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw35I2xNrJLXDmBAffoG2EGqOkIOFteB1dv5bRMaF-MgUl6vUd6BthwjP1hEG9QkuvD/exec'; // <-- IMPORTANTE: Cole a URL que você copiou
+
+    // Nova função para enviar os dados para a planilha
+    async function sendDataToSheet(analysisType, generatedContent) {
+        try {
+            // 1. Obter o IP do usuário usando um serviço gratuito
+            const ipResponse = await fetch('https://api.ipify.org?format=json');
+            const ipData = await ipResponse.json();
+            const userIp = ipData.ip;
+
+            // 2. Montar o pacote de dados (payload)
+            const payload = {
+                ip: userIp,
+                analysisType: analysisType,
+                generatedContent: generatedContent
+            };
+
+            // 3. Enviar os dados para o Google Apps Script
+            const response = await fetch(GOOGLE_SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors', // Importante para evitar erros de CORS com o Google Script
+                cache: 'no-cache',
+                redirect: 'follow',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(payload)
+            });
+
+            console.log("Data sent to Google Sheet.");
+
+        } catch (error) {
+            console.error("Error sending data to Google Sheet:", error);
         }
     }
+
+
+    // Função original, agora modificada para chamar a nova lógica
+    // Função salvaHistorico ATUALIZADA
+function salvarHistorico(sourceId, historyId) {
+    const atual = document.getElementById(sourceId).value;
+    const historico = document.getElementById(historyId);
+
+    if (atual) {
+        // --- MUDANÇA APLICADA AQUI ---
+
+        // Define um separador mais simples e limpo.
+        const separador = "\n\n------------------------------------\n\n";
+
+        // A nova lógica: se o histórico já tiver conteúdo, o texto novo é adicionado
+        // no topo, seguido pelo separador e o conteúdo antigo.
+        // Se estiver vazio, ele apenas adiciona o texto novo.
+        if (historico.value) {
+            historico.value = atual + separador + historico.value;
+        } else {
+            historico.value = atual;
+        }
+        
+        alert("Análise salva no histórico!");
+
+        // --- O RESTO DA FUNÇÃO CONTINUA IGUAL ---
+        // Esta parte, que envia os dados para a planilha, não foi alterada.
+        let analysisType = 'Desconhecido';
+        if (sourceId.includes('tarifa')) analysisType = 'Tarifa';
+        else if (sourceId.includes('cartao')) analysisType = 'Cobrança Indevida';
+        else if (sourceId.includes('pasep')) analysisType = 'PASEP';
+        
+        sendDataToSheet(analysisType, atual); // Continua enviando os dados para a planilha normalmente
+
+    } else {
+        alert("Nada para salvar. Gere uma análise primeiro.");
+    }
+}
+
+    // O resto do seu script.js continua aqui...
 
     // --- ADICIONANDO EVENTOS (LISTENERS) ---
     analysisButtons.forEach(button => {
