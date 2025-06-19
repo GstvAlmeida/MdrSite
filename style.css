@@ -1,0 +1,284 @@
+/* --- DESIGN SYSTEM: Variáveis Globais para Consistência --- */
+:root {
+    --bb-yellow: #FFEC00;
+    --bb-blue: #0033A0;
+    --bb-blue-light: #0056D9;
+    
+    --text-primary: #212529;
+    --text-secondary: #5a6169;
+    --text-on-accent: #0033A0; /* Texto sobre fundo amarelo */
+    --text-on-dark: #FFFFFF;  /* Texto sobre fundo azul */
+
+    --bg-light: #F4F6F9;
+    --bg-white: #FFFFFF;
+    --border-color: #DDE2E8;
+    --border-focus: #8ab4f8;
+
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.1);
+
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    
+    --font-main: 'Poppins', Arial, sans-serif;
+}
+
+/* --- ESTILOS GERAIS --- */
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-light);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 20px 10px;
+}
+
+/* --- CABEÇALHO --- */
+header {
+    max-width: 900px;
+    margin: 0 auto 0px auto;
+    text-align: center;
+}
+
+h1 {
+    background-color: var(--bg-white);
+    color: var(--bb-blue);
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding: 20px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow);
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    border-bottom: 4px solid var(--bb-yellow);
+}
+
+.logo {
+    position: fixed; 
+    top: 60px;       
+    right: 20px;       
+    width: 120px;    
+    height: auto;    
+    z-index: -1;     
+    opacity: 0.2;  
+    pointer-events: none;
+} 
+
+/* --- TÍTULOS E CONTAINERS --- */
+h2 {
+    text-align: center;
+    color: var(--bb-blue);
+    border-bottom: 2px solid var(--bb-yellow);
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+}
+
+.container {
+    padding: 30px;
+    max-width: 900px;
+    border-radius: var(--radius-md);
+    margin: auto auto 20px auto;
+    background-color: var(--bg-white);
+    box-shadow: var(--shadow);
+}
+
+/* --- FORMULÁRIOS --- */
+.field-group {
+    margin-bottom: 20px;
+}
+
+.grid-2-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.field-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.field-group input[type="text"],
+.field-group input[type="number"],
+.field-group select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    box-sizing: border-box;
+    background-color: #F8F9FA;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: var(--font-main);
+}
+
+.field-group input[type="text"]:focus,
+.field-group input[type="number"]:focus,
+.field-group select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--bb-blue);
+    box-shadow: 0 0 0 3px var(--border-focus);
+}
+
+/* --- GRUPO DE CHECKBOXES --- */
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 15px;
+}
+
+.checkbox-item {
+    background-color: var(--bg-light);
+    padding: 15px;
+    border-radius: var(--radius-sm);
+    border: 1px solid #e9ecef;
+}
+
+.checkbox-item > label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--bb-blue);
+    flex-shrink: 0;
+}
+
+.checkbox-item input[type="text"] {
+    margin-top: 4px;
+}
+
+/* --- BOTÕES --- */
+.hidden { display: none; }
+
+#analysis-selector-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.analysis-btn {
+    --color-default: var(--text-on-accent);
+    --background-default: var(--bb-yellow);
+    --border-default: var(--bb-yellow);
+    
+    --color-active: var(--text-on-dark);
+    --active-back: var(--bb-blue);
+
+    flex-grow: 1;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: 2px solid var(--border-default);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    appearance: none;
+    background: var(--background-default);
+    color: var(--color-default);
+    transition: all 0.3s ease;
+}
+
+.analysis-btn:hover:not(.active) {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+}
+
+.analysis-btn:before {
+    content: '';
+    position: absolute;
+    background: var(--active-back);
+    top: 0; left: 0; right: 0;
+    height: 100%;
+    transform: translateY(100%); 
+    transition: transform 0.4s ease-in-out;
+    z-index: 0;
+}
+
+.analysis-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+.analysis-btn.active {
+    color: var(--color-active);
+    border-color: var(--active-back);
+}
+
+.analysis-btn.active:before {
+    transform: translateY(0);
+}
+
+/* Botões de Ação */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-white);
+    color: var(--text-secondary);
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    background-color: var(--bb-blue);
+    color: var(--text-on-dark);
+    border-color: var(--bb-blue);
+    transform: translateY(-2px);
+}
+
+.btn-principal {
+    background-color: var(--bb-blue);
+    color: var(--text-on-dark);
+    border-color: var(--bb-blue);
+    font-size: 1.1rem;
+    padding: 15px 30px;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 25px; /* Espaço para as caixas de texto */
+}
+
+.btn-principal:hover {
+    background-color: var(--bb-blue-light);
+    border-color: var(--bb-blue-light);
+    box-shadow: var(--shadow);
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+    body { padding: 10px 5px; }
+    h1 { font-size: 1.5rem; }
+    .container { padding: 20px; }
+    .grid-2-cols, .checkbox-group { grid-template-columns: 1fr; }
+    .action-buttons { flex-direction: column; }
+    .action-btn { width: 100%; }
+}
