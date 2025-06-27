@@ -2,13 +2,16 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <!-- Garante que a página se adapte a diferentes tamanhos de tela (responsividade) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Análise de Risco - Banco do Brasil</title>
     
+    <!-- Importa a fonte 'Poppins' do Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
+    <!-- Conecta a folha de estilos CSS externa -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,18 +23,22 @@
     </h1>
 </header>
 
+<!-- Contêiner para os botões que selecionam o tipo de análise -->
 <div class="container">
     <p style="color: var(--text-secondary); font-weight: 600; text-align: center; margin-bottom: 20px;">Selecione o tipo de análise:</p>
     <div id="analysis-selector-buttons">
+        <!-- O atributo 'data-form-id' conecta cada botão a um formulário específico -->
         <button class="analysis-btn active" data-form-id="tarifa-form"><span>Tarifa</span></button>
         <button class="analysis-btn" data-form-id="cobranca-form"><span>Cobrança Indevida</span></button>
         <button class="analysis-btn" data-form-id="pasep-form"><span>PASEP</span></button>
     </div>
 </div>
 
+<!-- FORMULÁRIO DE TARIFA: Os outros formulários seguem esta mesma estrutura -->
 <div id="tarifa-form" class="container analysis-form">
     <h2>TARIFA</h2>
     
+    <!-- Campos de entrada principais -->
     <div class="grid-2-cols">
         <div class="field-group">
             <label for="rastreio_tarifa">Rastreio da Inicial</label>
@@ -64,6 +71,7 @@
         </div>
     </div>
 
+    <!-- Checkboxes para as etapas do processo -->
     <div class="field-group checkbox-group">
         <div class="checkbox-item"><label for="contestacao_tarifa"><input id="contestacao_tarifa" type="checkbox"/> Contestação apresentada</label><input id="rastreio_contestacao_tarifa" placeholder="Rastreio Contestação" type="text"/></div>
         <div class="checkbox-item"><label for="sem_contestacao_tarifa"><input id="sem_contestacao_tarifa" type="checkbox"/> Sem contestação</label></div>
@@ -77,6 +85,7 @@
         <div class="checkbox-item"><label for="procuracao_tarifa"><input id="procuracao_tarifa" type="checkbox"/> Procuração juntada</label><input id="rastreio_procuracao_tarifa" placeholder="Rastreio Procuracao" type="text"/></div>
     </div>
     
+    <!-- Seletores para Acórdão e Sentença -->
     <div class="grid-2-cols">
         <div class="field-group">
             <label for="acordao_select_tarifa">Acórdão proferido?</label>
@@ -105,8 +114,10 @@
         <label for="saida_tarifa">Análise Gerada</label>
         <textarea id="saida_tarifa" placeholder="A análise de risco será exibida aqui..." rows="10"></textarea>
         <div class="action-buttons">
+            <!-- 'data-target' indica ao JS qual campo de texto deve ser usado -->
             <button class="action-btn btn_copiar" data-target="saida_tarifa">📋 Copiar Análise</button>
             <button class="action-btn btn_exportar" data-target="saida_tarifa">💾 Exportar .txt</button>
+            <!-- 'data-history' indica ao JS em qual histórico o texto será salvo -->
             <button class="action-btn btn_salvar" data-target="saida_tarifa" data-history="historico_tarifa">📚 Salvar no Histórico</button>
         </div>
     </div>
@@ -116,6 +127,7 @@
     </div>
 </div>
 
+<!-- FORMULÁRIO DE COBRANÇA INDEVIDA: Escondido por padrão (classe 'hidden') -->
 <div id="cobranca-form" class="container hidden analysis-form">
     <h2>COBRANÇA INDEVIDA</h2>
      <div class="grid-2-cols">
@@ -200,6 +212,7 @@
     </div>
 </div>
 
+<!-- FORMULÁRIO PASEP: Também fica escondido até ser selecionado -->
 <div id="pasep-form" class="container hidden analysis-form">
     <h2>PASEP</h2>
     <div class="grid-2-cols">
@@ -282,6 +295,7 @@
     </div>
 </div>
 
+<!-- Conecta o arquivo JavaScript que controla toda a interatividade da página -->
 <script src="script.js"></script>
 
 </body>
