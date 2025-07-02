@@ -313,3 +313,53 @@ textarea:focus {
     .action-buttons { flex-direction: column; }
     .action-btn { width: 100%; }
 }
+
+/* --- ESTILOS PARA A PÁGINA HUB --- */
+
+/* Contêiner para os cards */
+.hub-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Estilo de cada card de navegação */
+.hub-card {
+    background-color: var(--bg-white);
+    padding: 25px 30px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow);
+    text-decoration: none; /* Remove o sublinhado do link */
+    color: var(--text-primary);
+    border-left: 5px solid var(--bb-blue);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hub-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.hub-card h3 {
+    margin: 0 0 10px 0;
+    color: var(--bb-blue);
+    font-size: 1.3rem;
+}
+
+.hub-card p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* Estilo para cards de ferramentas futuras (desabilitado) */
+.hub-card-disabled {
+    border-left-color: var(--border-color);
+    background-color: #fcfcfc;
+    pointer-events: none; /* Impede o clique */
+}
+
+.hub-card-disabled h3,
+.hub-card-disabled p {
+    color: var(--border-color);
+}
