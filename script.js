@@ -103,28 +103,81 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function gerarAnaliseSuper() {
-        let texto = "";
-        const rastreio = document.getElementById("rastreio_sup").value;
-        const fase = document.getElementById("fase_sup").value;
-        const valor = document.getElementById("valor_sup").value;
-        const pe = document.getElementById("pe_sup").value;
-        const pcond = document.getElementById("pcond_sup").value;
-        texto += `BB RÉU – AÇÃO DE REPACTUAÇÃO (SUPERENDIVIDAMENTO) (${rastreio}) – FASE DE ${fase.toUpperCase()} – `;
-        texto += "Autor, com base na Lei do Superendividamento (Lei 14.181/2021), ajuíza ação pleiteando a instauração de processo de repactuação de dívidas. Alega que a totalidade de seus débitos compromete seu mínimo existencial e busca a elaboração de um plano de pagamento consolidado que inclua todas as suas dívidas com a instituição. ";
-        if (document.getElementById("contestacao_sup")?.checked) { texto += "Contestação apresentada pelo Banco, arguindo os requisitos legais para a repactuação e a capacidade de pagamento do autor. "; }
-        if (document.getElementById("suspensao_sup")?.checked) { texto += "Processo encontra-se suspenso para tentativa de conciliação em audiência. "; }
-        const sentenca = document.getElementById("sentenca_sup").value; if (sentenca) { texto += `Sentença proferida, julgando o pedido ${sentenca}. `; }
-        if (document.getElementById("embargos_sup")?.checked) { texto += "Foram opostos embargos de declaração, pendentes de análise. "; }
-        if (document.getElementById("apelacao_sup")?.checked) { texto += "Apelação interposta por uma das partes. "; }
-        if (document.getElementById("contrarrazoes_sup")?.checked) { texto += "Contrarrazões apresentadas. "; }
-        if (document.getElementById("acordao_proc_sup")?.checked) { texto += "Acórdão proferido favoravelmente ao plano de pagamento. "; }
-        if (document.getElementById("acordao_improc_sup")?.checked) { texto += "Acórdão proferido de forma desfavorável ao plano de pagamento. "; }
-        if (pe) { texto += `PE fixado em ${pe}% devido à natureza conciliatória do processo e à necessidade de apresentação de plano de pagamento. `; }
-        if (valor) { texto += `O valor consolidado das dívidas apontado na inicial é de R$ ${valor}. `; }
-        if (pcond) { texto += `PCond estimado em R$ ${pcond}, considerando os custos processuais e a baixa probabilidade de condenação em honorários em caso de acordo. `; }
-        if (document.getElementById("procuracao_sup")?.checked) { texto += "Procuração e documentos de representação devidamente juntados aos autos. "; }
-        document.getElementById("saida_super").value = texto.trim();
+    let texto = "";
+
+    // 1. Coleta os valores dos campos principais
+    const rastreio = document.getElementById("rastreio_sup").value;
+    const fase = document.getElementById("fase_sup").value;
+    const tema = document.getElementById("tema_sup").value;
+
+    // 2. Monta o cabeçalho e a introdução da análise
+    texto += `BB RÉU – AÇÃO DE REPACTUAÇÃO (SUPERENDIVIDAMENTO) (${rastreio}) – FASE DE ${fase.toUpperCase()} – `;
+    texto += "Autor, com base na Lei do Superendividamento (Lei 14.181/2021), ajuíza ação pleiteando a instauração de processo de repactuação de dívidas. Alega que a totalidade de seus débitos compromete seu mínimo existencial e busca a elaboração de um plano de pagamento consolidado que inclua todas as suas dívidas com a instituição. ";
+
+    // 3. Adiciona textos com base nos checkboxes, incluindo os rastreios
+    if (document.getElementById("contestacao_sup")?.checked) {
+        texto += `Contestação apresentada pelo Banco (${document.getElementById("rastreio_contestacao_sup").value}), arguindo os requisitos legais para a repactuação. `;
+    } else if (document.getElementById("sem_contestacao_sup")?.checked) {
+        texto += "Ainda não houve apresentação de contestação pelo Banco. ";
     }
+
+    if (document.getElementById("pericia_sup")?.checked) {
+        texto += `Perícia contábil realizada (${document.getElementById("rastreio_pericia_sup").value}) para apurar o montante da dívida. `;
+    }
+
+    if (document.getElementById("suspenso_sup")?.checked) {
+        texto += `Processo suspenso com base no Tema ${tema}/STJ (${document.getElementById("rastreio_suspenso_sup").value}). `;
+    } else if (document.getElementById("nao_suspenso_sup")?.checked) {
+        texto += "Processo segue em curso regular. ";
+    }
+
+    // 4. Lógica aprimorada para Sentença, considerando o checkbox "sem sentença"
+    const sentenca = document.getElementById("sentenca_select_sup")?.value;
+    if (sentenca) {
+        texto += `Sentença proferida, julgando o pedido ${sentenca} (${document.getElementById("rastreio_sentenca_sup").value}). `;
+    } else if (document.getElementById("sem_sentenca_sup")?.checked) {
+        texto += "Ainda não houve sentença, aguardando audiência conciliatória ou julgamento. ";
+    }
+    
+    // 5. Continua adicionando textos para as fases recursais
+    if (document.getElementById("apelacao_sup")?.checked) {
+        texto += `Apelação interposta (${document.getElementById("rastreio_apelacao_sup").value}). `;
+    }
+    if (document.getElementById("contrarrazoes_sup")?.checked) {
+        texto += `Contrarrazões apresentadas (${document.getElementById("rastreio_contrarrazoes_sup").value}). `;
+    }
+
+    const acordao = document.getElementById("acordao_select_sup")?.value;
+    if (acordao) {
+        texto += `Acórdão proferido (${document.getElementById("rastreio_acordao_sup").value}), `;
+        texto += acordao === "procedente" ? "reformando a sentença para aprovar o plano de pagamento. " : "mantendo a decisão de primeira instância. ";
+    }
+
+    if (document.getElementById("embargos_sup")?.checked) {
+        texto += `Foram opostos embargos de declaração (${document.getElementById("rastreio_embargos_sup").value}), pendentes de análise. `;
+    }
+    
+    // 6. Adiciona as informações financeiras
+    const pe = document.getElementById("pe_sup")?.value;
+    if (pe) {
+        texto += `PE fixado em ${pe}% devido à natureza conciliatória do processo e à necessidade de apresentação de plano de pagamento. `;
+    }
+    const valor = document.getElementById("valor_sup")?.value;
+    if (valor) {
+        texto += `O valor consolidado das dívidas apontado na inicial é de R$ ${valor}. `;
+    }
+    const pcond = document.getElementById("pcond_sup")?.value;
+    if (pcond) {
+        texto += `PCond estimado em R$ ${pcond}, considerando os custos processuais e a baixa probabilidade de condenação em honorários em caso de acordo. `;
+    }
+
+    if (document.getElementById("procuracao_sup")?.checked) {
+        texto += `Procuração e documentos de representação devidamente juntados aos autos (${document.getElementById("rastreio_procuracao_sup").value}). `;
+    }
+    
+    // 7. Coloca o texto final no campo de saída
+    document.getElementById("saida_super").value = texto.trim();
+}
 
     // --- FUNÇÕES DE UTILIDADE (Copiar, Exportar, Salvar) ---
 
