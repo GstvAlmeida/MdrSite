@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <!-- Garante que a página se adapte a diferentes tamanhos de tela (responsividade) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Risco - Banco do Brasil</title>
+    
+    <!-- Importa a fonte 'Poppins' do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Conecta a folha de estilos CSS externa -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <img src="Icons/Mdr_logo.ico" alt="Logo Mdr" class="logo">
+
+<header>
+    <h1>
+        <span>Gerador de Análise de Risco</span>
+    </h1>
+</header>
+
+<!-- Contêiner para os botões que selecionam o tipo de análise -->
+<div class="container">
+    <p style="color: var(--text-secondary); font-weight: 600; text-align: center; margin-bottom: 20px;">Selecione o tipo de análise:</p>
+    <div id="analysis-selector-buttons">
+        <!-- O atributo 'data-form-id' conecta cada botão a um formulário específico -->
+        <button class="analysis-btn active" data-form-id="tarifa-form"><span>Tarifa</span></button>
+        <button class="analysis-btn" data-form-id="cobranca-form"><span>Cobrança Indevida</span></button>
+        <button class="analysis-btn" data-form-id="pasep-form"><span>PASEP</span></button>
+    </div>
+</div>
+
+<!-- FORMULÁRIO DE TARIFA: Os outros formulários seguem esta mesma estrutura -->
+<div id="tarifa-form" class="container analysis-form">
+    <h2>TARIFA</h2>
+    
+    <!-- Campos de entrada principais -->
+    <div class="grid-2-cols">
+        <div class="field-group">
+            <label for="rastreio_tarifa">Rastreio da Inicial</label>
+            <input id="rastreio_tarifa" placeholder="Ex: 20250000000000" type="text"/>
+        </div>
+        <div class="field-group">
+            <label for="fase_tarifa">Fase Processual</label>
+            <select id="fase_tarifa">
+                <option value="">Selecione</option>
+                <option value="conhecimento">Conhecimento</option>
+                <option value="recursal">Recursal</option>
+                <option value="execução">Execução</option>
+            </select>
+        </div>
+        <div class="field-group">
+            <label for="pe_tarifa">PE (%)</label>
+            <input id="pe_tarifa" placeholder="Ex: 20" type="number"/>
+        </div>
+        <div class="field-group">
+            <label for="valor_tarifa">Valor do Pedido (R$)</label>
+            <input id="valor_tarifa" placeholder="Ex: 260.741,33" type="text"/>
+        </div>
+        <div class="field-group">
+            <label for="pcond_tarifa">PCond Estimado (R$)</label>
+            <input id="pcond_tarifa" placeholder="Ex: 0,01" type="text"/>
+        </div>
+         <div class="field-group">
+            <label for="tema_tarifa">Tema STJ (caso suspenso)</label>
+            <input id="tema_tarifa" placeholder="Ex: Tema 1150" type="text"/>
+        </div>
+    </div>
+
+    <!-- Checkboxes para as etapas do processo -->
+    <div class="field-group checkbox-group">
+        <div class="checkbox-item"><label for="contestacao_tarifa"><input id="contestacao_tarifa" type="checkbox"/> Contestação apresentada</label><input id="rastreio_contestacao_tarifa" placeholder="Rastreio Contestação" type="text"/></div>
+        <div class="checkbox-item"><label for="sem_contestacao_tarifa"><input id="sem_contestacao_tarifa" type="checkbox"/> Sem contestação</label></div>
+        <div class="checkbox-item"><label for="pericia_tarifa"><input id="pericia_tarifa" type="checkbox"/> Perícia realizada</label><input id="rastreio_pericia_tarifa" placeholder="Rastreio Pericia" type="text"/></div>
+        <div class="checkbox-item"><label for="suspenso_tarifa"><input id="suspenso_tarifa" type="checkbox"/> Processo suspenso</label><input id="rastreio_suspenso_tarifa" placeholder="Rastreio Suspenso" type="text"/></div>
+        <div class="checkbox-item"><label for="nao_suspenso_tarifa"><input id="nao_suspenso_tarifa" type="checkbox"/> Processo não suspenso</label></div>
+        <div class="checkbox-item"><label for="sem_sentenca_tarifa"><input id="sem_sentenca_tarifa" type="checkbox"/> Ainda não houve sentença</label></div>
+        <div class="checkbox-item"><label for="apelacao_tarifa"><input id="apelacao_tarifa" type="checkbox"/> Apelação interposta</label><input id="rastreio_apelacao_tarifa" placeholder="Rastreio Apelacao" type="text"/></div>
+        <div class="checkbox-item"><label for="contrarrazoes_tarifa"><input id="contrarrazoes_tarifa" type="checkbox"/> Contrarrazões apresentadas</label><input id="rastreio_contrarrazoes_tarifa" placeholder="Rastreio Contrarrazoes" type="text"/></div>
+        <div class="checkbox-item"><label for="embargos_tarifa"><input id="embargos_tarifa" type="checkbox"/> Embargos opostos</label><input id="rastreio_embargos_tarifa" placeholder="Rastreio Embargos" type="text"/></div>
+        <div class="checkbox-item"><label for="procuracao_tarifa"><input id="procuracao_tarifa" type="checkbox"/> Procuração juntada</label><input id="rastreio_procuracao_tarifa" placeholder="Rastreio Procuracao" type="text"/></div>
+    </div>
+    
+    <!-- Seletores para Acórdão e Sentença -->
+    <div class="grid-2-cols">
+        <div class="field-group">
+            <label for="acordao_select_tarifa">Acórdão proferido?</label>
+            <select id="acordao_select_tarifa">
+                <option value="">Selecione</option>
+                <option value="procedente">Reformando Sentença</option>
+                <option value="improcedente">Mantendo Sentença, aguardando Trânsito em julgado</option>
+            </select>
+            <input id="rastreio_acordao_tarifa" placeholder="Rastreio Acórdão" style="margin-top:8px;" type="text"/>
+        </div>
+        <div class="field-group">
+            <label for="sentenca_select_tarifa">Sentença proferida?</label>
+            <select id="sentenca_select_tarifa">
+                <option value="">Selecione</option>
+                <option value="improcedente">Improcedente</option>
+                <option value="parcialmente procedente">Parcialmente procedente</option>
+                <option value="procedente">Procedente</option>
+            </select>
+            <input id="rastreio_sentenca_tarifa" placeholder="Rastreio Sentença" style="margin-top:8px;" type="text"/>
+        </div>
+    </div>
+    
+    <button id="btn_gerar_tarifa" class="action-btn btn-principal">Gerar Análise</button>
+    
+    <div class="field-group">
+        <label for="saida_tarifa">Análise Gerada</label>
+        <textarea id="saida_tarifa" placeholder="A análise de risco será exibida aqui..." rows="10"></textarea>
+        <div class="action-buttons">
+            <!-- 'data-target' indica ao JS qual campo de texto deve ser usado -->
+            <button class="action-btn btn_copiar" data-target="saida_tarifa">📋 Copiar Análise</button>
+            <button class="action-btn btn_exportar" data-target="saida_tarifa">💾 Exportar .txt</button>
+            <!-- 'data-history' indica ao JS em qual histórico o texto será salvo -->
+            <button class="action-btn btn_salvar" data-target="saida_tarifa" data-history="historico_tarifa">📚 Salvar no Histórico</button>
+        </div>
+    </div>
+    <div class="field-group">
+        <label for="historico_tarifa">Histórico</label>
+        <textarea id="historico_tarifa" placeholder="Histórico de análises salvas para 'Tarifa'..." rows="8"></textarea>
+    </div>
+</div>
+
+<!-- FORMULÁRIO DE COBRANÇA INDEVIDA: Escondido por padrão (classe 'hidden') -->
+<div id="cobranca-form" class="container hidden analysis-form">
+    <h2>COBRANÇA INDEVIDA</h2>
+     <div class="grid-2-cols">
+        <div class="field-group">
+            <label for="rastreio_cartao">Rastreio da Inicial</label>
+            <input id="rastreio_cartao" placeholder="Ex: 20250000000000" type="text"/>
+        </div>
+        <div class="field-group">
+            <label for="fase_cartao">Fase Processual</label>
+            <select id="fase_cartao">
+                <option value="">Selecione</option>
+                <option value="conhecimento">Conhecimento</option>
+                <option value="recursal">Recursal</option>
+                <option value="execução">Execução</option>
+            </select>
+        </div>
+        <div class="field-group">
+            <label for="pe_cartao">PE (%)</label>
+            <input id="pe_cartao" placeholder="Ex: 20" type="number"/>
+        </div>
+        <div class="field-group">
+            <label for="valor_cartao">Valor do Pedido (R$)</label>
+            <input id="valor_cartao" placeholder="Ex: 260.741,33" type="text"/>
+        </div>
+        <div class="field-group">
+            <label for="pcond_cartao">PCond Estimado (R$)</label>
+            <input id="pcond_cartao" placeholder="Ex: 0,01" type="text"/>
+        </div>
+         <div class="field-group">
+            <label for="tema_cartao">Tema STJ (caso suspenso)</label>
+            <input id="tema_cartao" placeholder="Ex: Tema 1150" type="text"/>
+        </div>
+    </div>
+     <div class="field-group checkbox-group">
+        <div class="checkbox-item"><label for="contestacao_cartao"><input id="contestacao_cartao" type="checkbox"/> Contestação apresentada</label><input id="rastreio_contestacao_cartao" placeholder="Rastreio Contestação" type="text"/></div>
+        <div class="checkbox-item"><label for="sem_contestacao_cartao"><input id="sem_contestacao_cartao" type="checkbox"/> Sem contestação</label></div>
+        <div class="checkbox-item"><label for="pericia_cartao"><input id="pericia_cartao" type="checkbox"/> Perícia realizada</label><input id="rastreio_pericia_cartao" placeholder="Rastreio Pericia" type="text"/></div>
+        <div class="checkbox-item"><label for="suspenso_cartao"><input id="suspenso_cartao" type="checkbox"/> Processo suspenso</label><input id="rastreio_suspenso_cartao" placeholder="Rastreio Suspenso" type="text"/></div>
+        <div class="checkbox-item"><label for="nao_suspenso_cartao"><input id="nao_suspenso_cartao" type="checkbox"/> Processo não suspenso</label></div>
+        <div class="checkbox-item"><label for="sem_sentenca_cartao"><input id="sem_sentenca_cartao" type="checkbox"/> Ainda não houve sentença</label></div>
+        <div class="checkbox-item"><label for="apelacao_cartao"><input id="apelacao_cartao" type="checkbox"/> Apelação interposta</label><input id="rastreio_apelacao_cartao" placeholder="Rastreio Apelacao" type="text"/></div>
+        <div class="checkbox-item"><label for="contrarrazoes_cartao"><input id="contrarrazoes_cartao" type="checkbox"/> Contrarrazões apresentadas</label><input id="rastreio_contrarrazoes_cartao" placeholder="Rastreio Contrarrazoes" type="text"/></div>
+        <div class="checkbox-item"><label for="embargos_cartao"><input id="embargos_cartao" type="checkbox"/> Embargos opostos</label><input id="rastreio_embargos_cartao" placeholder="Rastreio Embargos" type="text"/></div>
+        <div class="checkbox-item"><label for="procuracao_cartao"><input id="procuracao_cartao" type="checkbox"/> Procuração juntada</label><input id="rastreio_procuracao_cartao" placeholder="Rastreio Procuracao" type="text"/></div>
+    </div>
+    <div class="grid-2-cols">
+        <div class="field-group">
+            <label for="acordao_select_cartao">Acórdão proferido?</label>
+            <select id="acordao_select_cartao">
+                <option value="">Selecione</option>
+                <option value="procedente">Reformando Sentença</option>
+                <option value="improcedente">Mantendo Sentença, aguardando Trânsito em julgado</option>
+            </select>
+            <input id="rastreio_acordao_cartao" placeholder="Rastreio Acórdão" style="margin-top:8px;" type="text"/>
+        </div>
+        <div class="field-group">
+            <label for="sentenca_select_cartao">Sentença proferida?</label>
+            <select id="sentenca_select_cartao">
+                <option value="">Selecione</option>
+                <option value="improcedente">Improcedente</option>
+                <option value="parcialmente procedente">Parcialmente procedente</option>
+                <option value="procedente">Procedente</option>
+            </select>
+            <input id="rastreio_sentenca_cartao" placeholder="Rastreio Sentença" style="margin-top:8px;" type="text"/>
+        </div>
+    </div>
+
+    <button id="btn_gerar_cartao" class="action-btn btn-principal">Gerar Análise</button>
+    
+    <div class="field-group">
+        <label for="saida_cartao">Análise Gerada</label>
+        <textarea id="saida_cartao" placeholder="A análise de risco será exibida aqui..." rows="10"></textarea>
+        <div class="action-buttons">
+            <button class="action-btn btn_copiar" data-target="saida_cartao">📋 Copiar Análise</button>
+            <button class="action-btn btn_exportar" data-target="saida_cartao">💾 Exportar .txt</button>
+            <button class="action-btn btn_salvar" data-target="saida_cartao" data-history="historico_cartao">📚 Salvar no Histórico</button>
+        </div>
+    </div>
+    <div class="field-group">
+        <label for="historico_cartao">Histórico</label>
+        <textarea id="historico_cartao" placeholder="Histórico de análises salvas para 'Cobrança Indevida'..." rows="8"></textarea>
+    </div>
+</div>
+
+<!-- FORMULÁRIO PASEP: Também fica escondido até ser selecionado -->
+<div id="pasep-form" class="container hidden analysis-form">
+    <h2>PASEP</h2>
+    <div class="grid-2-cols">
+        <div class="field-group">
+            <label for="rastreio_pasep">Rastreio da Inicial</label>
+            <input id="rastreio_pasep" placeholder="Ex: 20250000000000" type="text"/>
+        </div>
+        <div class="field-group">
+            <label for="fase_pasep">Fase Processual</label>
+            <select id="fase_pasep">
+                <option value="">Selecione</option>
+                <option value="conhecimento">Conhecimento</option>
+                <option value="recursal">Recursal</option>
+                <option value="execução">Execução</option>
+            </select>
+        </div>
+        <div class="field-group">
+            <label for="pe_pasep">PE (%)</label>
+            <input id="pe_pasep" placeholder="Ex: 20" type="number"/>
+        </div>
+        <div class="field-group">
+            <label for="valor_pasep">Valor do Pedido (R$)</label>
+            <input id="valor_pasep" placeholder="Ex: 260.741,33" type="text"/>
+        </div>
+        <div class="field-group">
+            <label for="pcond_pasep">PCond Estimado (R$)</label>
+            <input id="pcond_pasep" placeholder="Ex: 0,01" type="text"/>
+        </div>
+         <div class="field-group">
+            <label for="tema_pasep">Tema STJ (caso suspenso)</label>
+            <input id="tema_pasep" placeholder="Ex: Tema 1150" type="text"/>
+        </div>
+    </div>
+     <div class="field-group checkbox-group">
+        <div class="checkbox-item"><label for="contestacao_pasep"><input id="contestacao_pasep" type="checkbox"/> Contestação apresentada</label><input id="rastreio_contestacao_pasep" placeholder="Rastreio Contestação" type="text"/></div>
+        <div class="checkbox-item"><label for="sem_contestacao_pasep"><input id="sem_contestacao_pasep" type="checkbox"/> Sem contestação</label></div>
+        <div class="checkbox-item"><label for="pericia_pasep"><input id="pericia_pasep" type="checkbox"/> Perícia realizada</label><input id="rastreio_pericia_pasep" placeholder="Rastreio Pericia" type="text"/></div>
+        <div class="checkbox-item"><label for="suspenso_pasep"><input id="suspenso_pasep" type="checkbox"/> Processo suspenso</label><input id="rastreio_suspenso_pasep" placeholder="Rastreio Suspenso" type="text"/></div>
+        <div class="checkbox-item"><label for="nao_suspenso_pasep"><input id="nao_suspenso_pasep" type="checkbox"/> Processo não suspenso</label></div>
+        <div class="checkbox-item"><label for="sem_sentenca_pasep"><input id="sem_sentenca_pasep" type="checkbox"/> Ainda não houve sentença</label></div>
+        <div class="checkbox-item"><label for="apelacao_pasep"><input id="apelacao_pasep" type="checkbox"/> Apelação interposta</label><input id="rastreio_apelacao_pasep" placeholder="Rastreio Apelacao" type="text"/></div>
+        <div class="checkbox-item"><label for="contrarrazoes_pasep"><input id="contrarrazoes_pasep" type="checkbox"/> Contrarrazões apresentadas</label><input id="rastreio_contrarrazoes_pasep" placeholder="Rastreio Contrarrazoes" type="text"/></div>
+        <div class="checkbox-item"><label for="embargos_pasep"><input id="embargos_pasep" type="checkbox"/> Embargos opostos</label><input id="rastreio_embargos_pasep" placeholder="Rastreio Embargos" type="text"/></div>
+        <div class="checkbox-item"><label for="procuracao_pasep"><input id="procuracao_pasep" type="checkbox"/> Procuração juntada</label><input id="rastreio_procuracao_pasep" placeholder="Rastreio Procuracao" type="text"/></div>
+    </div>
+    <div class="grid-2-cols">
+        <div class="field-group">
+            <label for="acordao_select_pasep">Acórdão proferido?</label>
+            <select id="acordao_select_pasep">
+                <option value="">Selecione</option>
+                <option value="procedente">Reformando Sentença</option>
+                <option value="improcedente">Mantendo Sentença, aguardando Trânsito em julgado</option>
+            </select>
+            <input id="rastreio_acordao_pasep" placeholder="Rastreio Acórdão" style="margin-top:8px;" type="text"/>
+        </div>
+        <div class="field-group">
+            <label for="sentenca_select_pasep">Sentença proferida?</label>
+            <select id="sentenca_select_pasep">
+                <option value="">Selecione</option>
+                <option value="improcedente">Improcedente</option>
+                <option value="parcialmente procedente">Parcialmente procedente</option>
+                <option value="procedente">Procedente</option>
+            </select>
+            <input id="rastreio_sentenca_pasep" placeholder="Rastreio Sentença" style="margin-top:8px;" type="text"/>
+        </div>
+    </div>
+    <button id="btn_gerar_pasep" class="action-btn btn-principal">Gerar Análise</button>
+    <div class="field-group">
+        <label for="saida_pasep">Análise Gerada</label>
+        <textarea id="saida_pasep" placeholder="A análise de risco será exibida aqui..." rows="10"></textarea>
+        <div class="action-buttons">
+            <button class="action-btn btn_copiar" data-target="saida_pasep">📋 Copiar Análise</button>
+            <button class="action-btn btn_exportar" data-target="saida_pasep">💾 Exportar .txt</button>
+            <button class="action-btn btn_salvar" data-target="saida_pasep" data-history="historico_pasep">📚 Salvar no Histórico</button>
+        </div>
+    </div>
+    <div class="field-group">
+        <label for="historico_pasep">Histórico</label>
+        <textarea id="historico_pasep" placeholder="Histórico de análises salvas para 'PASEP'..." rows="8"></textarea>
+    </div>
+</div>
+
+<!-- Conecta o arquivo JavaScript que controla toda a interatividade da página -->
+<script src="script.js"></script>
+
+</body>
+</html>
