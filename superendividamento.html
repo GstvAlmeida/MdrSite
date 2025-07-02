@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Análise de Superendividamento - Banco do Brasil</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <img src="icons/Mdr_logo.ico" alt="Logo Mdr" class="logo">
+
+<header>
+    <h1>
+        <span>Análise de Superendividamento</span>
+    </h1>
+</header>
+
+<div class="container">
+    <h2>SUPERENDIVIDAMENTO</h2>
+    
+    <div class="grid-2-cols">
+        <div class="field-group">
+            <label for="rastreio_sup">Rastreio da Petição Inicial</label>
+            <input id="rastreio_sup" placeholder="Ex: 20250000000000" type="text"/>
+        </div>
+        <div class="field-group">
+            <label for="fase_sup">Fase Processual</label>
+            <select id="fase_sup">
+                <option value="">Selecione</option>
+                <option value="conhecimento">Conhecimento</option>
+                <option value="recursal">Recursal</option>
+                <option value="execução">Execução</option>
+            </select>
+        </div>
+        <div class="field-group">
+            <label for="pe_sup">PE (%)</label>
+            <input id="pe_sup" placeholder="Ex: 20" type="number"/>
+        </div>
+        <div class="field-group">
+            <label for="valor_sup">Valor do Pedido (R$)</label>
+            <input id="valor_sup" placeholder="Ex: 50.000,00" type="text"/>
+        </div>
+        <div class="field-group">
+            <label for="pcond_sup">PCond Estimado (R$)</label>
+            <input id="pcond_sup" placeholder="Ex: 0,01" type="text"/>
+        </div>
+         <div class="field-group">
+            <label for="sentenca_sup">Sentença proferida?</label>
+            <select id="sentenca_sup">
+                <option value="">Selecione</option>
+                <option value="improcedente">Improcedente</option>
+                <option value="parcialmente procedente">Parcialmente procedente</option>
+                <option value="procedente">Procedente</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="field-group checkbox-group">
+        <div class="checkbox-item"><label for="contestacao_sup"><input id="contestacao_sup" type="checkbox"/> Contestação apresentada</label></div>
+        <div class="checkbox-item"><label for="suspensao_sup"><input id="suspensao_sup" type="checkbox"/> Processo suspenso</label></div>
+        <div class="checkbox-item"><label for="embargos_sup"><input id="embargos_sup" type="checkbox"/> Embargos de declaração</label></div>
+        <div class="checkbox-item"><label for="apelacao_sup"><input id="apelacao_sup" type="checkbox"/> Apelação interposta</label></div>
+        <div class="checkbox-item"><label for="contrarrazoes_sup"><input id="contrarrazoes_sup" type="checkbox"/> Contrarrazões apresentadas</label></div>
+        <div class="checkbox-item"><label for="acordao_proc_sup"><input id="acordao_proc_sup" type="checkbox"/> Acórdão procedente</label></div>
+        <div class="checkbox-item"><label for="acordao_improc_sup"><input id="acordao_improc_sup" type="checkbox"/> Acórdão improcedente</label></div>
+        <div class="checkbox-item"><label for="procuracao_sup"><input id="procuracao_sup" type="checkbox"/> Procuração juntada</label></div>
+    </div>
+    
+    <button id="btn_gerar_super" class="action-btn btn-principal">Gerar Análise</button>
+    
+    <div class="field-group">
+        <label for="saida_super">Análise Gerada</label>
+        <textarea id="saida_super" placeholder="A análise de risco será exibida aqui..." rows="10"></textarea>
+        <div class="action-buttons">
+            <button class="action-btn btn_copiar" data-target="saida_super">📋 Copiar Análise</button>
+            <button class="action-btn btn_exportar" data-target="saida_super">💾 Exportar .txt</button>
+            <button class="action-btn btn_salvar" data-target="saida_super" data-history="historico_super">📚 Salvar no Histórico</button>
+        </div>
+    </div>
+
+    <div class="field-group">
+        <label for="historico_super">Histórico</label>
+        <textarea id="historico_super" placeholder="Histórico de análises salvas para 'Superendividamento'..." rows="8"></textarea>
+    </div>
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
