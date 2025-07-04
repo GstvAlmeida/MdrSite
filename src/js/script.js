@@ -129,72 +129,97 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("saida_super").value = texto.trim();
     }
     
-    // NOVO: Função para gerar a análise de Seguro Prestamista
     function gerar_seguro() {
         let texto = "";
         const rastreioInicial = document.getElementById("rastreio_seg")?.value;
         const fase = document.getElementById("fase_seg")?.value;
-
         texto += `BB RÉU – AÇÃO INDENIZATÓRIA DE SEGURO PRESTAMISTA (${rastreioInicial}) – FASE DE ${fase.toUpperCase()} – `;
         texto += "Autor ajuíza ação alegando contratação indevida de seguro prestamista vinculado ao contrato de empréstimo, sem consentimento ou informação clara. Sustenta que a cobrança configura venda casada, prática abusiva vedada pelo CDC. Pleiteia devolução dos valores, correção monetária e indenização por danos morais. ";
+        if (document.getElementById("contestacao_seg")?.checked) { texto += `Processo distribuído, Contestação Apresentada de maneira tempestiva (${document.getElementById("rastreio_contestacao_seg").value}). `;
+        } else if (document.getElementById("sem_contestacao_seg")?.checked) { texto += "Processo distribuído, sem contestação apresentada, pendente de decisão judicial. "; }
+        if (document.getElementById("suspenso_seg")?.checked) { texto += `Processo suspenso por decisão judicial. (${document.getElementById("rastreio_suspenso_seg").value}). `;
+        } else if (document.getElementById("nao_suspenso_seg")?.checked) { texto += "Processo segue em curso. "; }
+        const sentenca = document.getElementById("sentenca_select_seg")?.value;
+        if (sentenca) { texto += `Sentença proferida, sendo ${sentenca}. (${document.getElementById("rastreio_sentenca_seg").value}). `;
+        } else if (document.getElementById("sem_sentenca_seg")?.checked) { texto += "Ainda não houve sentença. "; }
+        if (document.getElementById("apelacao_seg")?.checked) { texto += `APELAÇÃO INTERPOSTA, (${document.getElementById("rastreio_apelacao_seg").value}). `; }
+        if (document.getElementById("contrarrazoes_seg")?.checked) { texto += `Contrarrazões já protocolada, (${document.getElementById("rastreio_contrarrazoes_seg").value}). `; }
+        const acordao = document.getElementById("acordao_select_seg")?.value;
+        if (acordao) { texto += `Acórdão, (${document.getElementById("rastreio_acordao_seg").value}). `; texto += acordao === "procedente" ? "Reformando Sentença. " : "Mantendo Sentença, aguardando Trânsito em julgado. "; }
+        const pe = document.getElementById("pe_seg")?.value; if (pe) { texto += `Estabelece-se PE em ${pe}% tendo em vista jurisprudência favorável a parte autora em razão de ausência expressiva de consetimento na aderência ao seguro. `; }
+        const valor = document.getElementById("valor_seg")?.value; if (valor) { texto += `Valor do pedido é de R$ ${valor}, com base nos valores pagos pelo seguro e eventual pedido de dano moral. `; }
+        const pcond = document.getElementById("pcond_seg")?.value; if (pcond) { texto += `PCond estimado em R$ ${pcond}, considerando precedentes regionais para ações com similar objeto . `; }
+        if (document.getElementById("embargos_seg")?.checked) { texto += `Foram opostos embargos de declaração, ainda pendentes de análise. (${document.getElementById("rastreio_embargos_seg").value}). `; }
+        if (document.getElementById("procuracao_seg")?.checked) { texto += `Procuração juntada aos autos (${document.getElementById("rastreio_procuracao_seg").value}). `; }
+        document.getElementById("saida_seguro").value = texto.trim();
+    }
 
-        if (document.getElementById("contestacao_seg")?.checked) {
-            texto += `Processo distribuído, Contestação Apresentada de maneira tempestiva (${document.getElementById("rastreio_contestacao_seg").value}). `;
-        } else if (document.getElementById("sem_contestacao_seg")?.checked) {
+    // NOVO: Função para gerar a análise de Golpe / Fraude
+    function gerar_golpe() {
+        let texto = "";
+        const rastreioInicial = document.getElementById("rastreio_golpe")?.value;
+        const fase = document.getElementById("fase_golpe")?.value;
+
+        texto += `BB RÉU – AÇÃO INDENIZATÓRIA POR TRANSFERÊNCIA NÃO RECONHECIDA (${rastreioInicial}) – FASE DE ${fase.toUpperCase()} – `;
+        texto += "Autor ajuíza ação alegando ter sido vítima de golpe, com realização de transferência bancária não autorizada via aplicativo ou canal eletrônico do Banco do Brasil. Sustenta que houve falha na segurança do sistema e ausência de mecanismos de proteção da instituição financeira. Pleiteia restituição do valor transferido e indenização por danos morais. ";
+
+        if (document.getElementById("contestacao_golpe")?.checked) {
+            texto += `Processo distribuído, Contestação Apresentada de maneira tempestiva (${document.getElementById("rastreio_contestacao_golpe").value}). `;
+        } else if (document.getElementById("sem_contestacao_golpe")?.checked) {
             texto += "Processo distribuído, sem contestação apresentada, pendente de decisão judicial. ";
         }
-        
-        if (document.getElementById("suspenso_seg")?.checked) {
-            texto += `Processo suspenso por decisão judicial. (${document.getElementById("rastreio_suspenso_seg").value}). `;
-        } else if (document.getElementById("nao_suspenso_seg")?.checked) {
+
+        if (document.getElementById("suspenso_golpe")?.checked) {
+            texto += `Processo suspenso por decisão judicial. (${document.getElementById("rastreio_suspenso_golpe").value}). `;
+        } else if (document.getElementById("nao_suspenso_golpe")?.checked) {
             texto += "Processo segue em curso. ";
         }
 
-        const sentenca = document.getElementById("sentenca_select_seg")?.value;
+        const sentenca = document.getElementById("sentenca_select_golpe")?.value;
         if (sentenca) {
-            texto += `Sentença proferida, sendo ${sentenca}. (${document.getElementById("rastreio_sentenca_seg").value}). `;
-        } else if (document.getElementById("sem_sentenca_seg")?.checked) {
+            texto += `Sentença proferida, sendo ${sentenca}. (${document.getElementById("rastreio_sentenca_golpe").value}). `;
+        } else if (document.getElementById("sem_sentenca_golpe")?.checked) {
             texto += "Ainda não houve sentença. ";
         }
         
-        if (document.getElementById("apelacao_seg")?.checked) {
-            texto += `APELAÇÃO INTERPOSTA, (${document.getElementById("rastreio_apelacao_seg").value}). `;
+        if (document.getElementById("apelacao_golpe")?.checked) {
+            texto += `APELAÇÃO INTERPOSTA, (${document.getElementById("rastreio_apelacao_golpe").value}). `;
         }
 
-        if (document.getElementById("contrarrazoes_seg")?.checked) {
-            texto += `Contrarrazões já protocolada, (${document.getElementById("rastreio_contrarrazoes_seg").value}). `;
+        if (document.getElementById("contrarrazoes_golpe")?.checked) {
+            texto += `Contrarrazões já protocolada, (${document.getElementById("rastreio_contrarrazoes_golpe").value}). `;
         }
         
-        const acordao = document.getElementById("acordao_select_seg")?.value;
+        const acordao = document.getElementById("acordao_select_golpe")?.value;
         if (acordao) {
-            texto += `Acórdão, (${document.getElementById("rastreio_acordao_seg").value}). `;
+            texto += `Acórdão, (${document.getElementById("rastreio_acordao_golpe").value}). `;
             texto += acordao === "procedente" ? "Reformando Sentença. " : "Mantendo Sentença, aguardando Trânsito em julgado. ";
         }
-        
-        const pe = document.getElementById("pe_seg")?.value;
+
+        const pe = document.getElementById("pe_golpe")?.value;
         if (pe) {
-            texto += `Estabelece-se PE em ${pe}% tendo em vista jurisprudência favorável a parte autora em razão de ausência expressiva de consetimento na aderência ao seguro. `;
+            texto += `Estabelece-se PE em ${pe}% tendo em vista a análise do caso concreto, a robustez da prova da parte autora quanto à fraude e a linha jurisprudencial majoritária sobre responsabilidade objetiva mitigada em casos de golpe praticado por engenharia social, com atuação decisiva do consumidor. `;
         }
-        
-        const valor = document.getElementById("valor_seg")?.value;
+
+        const valor = document.getElementById("valor_golpe")?.value;
         if (valor) {
-            texto += `Valor do pedido é de R$ ${valor}, com base nos valores pagos pelo seguro e eventual pedido de dano moral. `;
+            texto += `Valor do pedido é de R$ ${valor}, considerando o valor da transferência impugnada e eventual dano moral postulado. `;
         }
-        
-        const pcond = document.getElementById("pcond_seg")?.value;
+
+        const pcond = document.getElementById("pcond_golpe")?.value;
         if (pcond) {
-            texto += `PCond estimado em R$ ${pcond}, considerando precedentes regionais para ações com similar objeto . `;
+            texto += `PCond estimado em R$ ${pcond}, conforme precedentes locais, grau de instrução da parte autora e eventual identificação de culpa exclusiva da vítima. `;
         }
         
-        if (document.getElementById("embargos_seg")?.checked) {
-            texto += `Foram opostos embargos de declaração, ainda pendentes de análise. (${document.getElementById("rastreio_embargos_seg").value}). `;
+        if (document.getElementById("embargos_golpe")?.checked) {
+            texto += `Foram opostos embargos de declaração, ainda pendentes de análise. (${document.getElementById("rastreio_embargos_golpe").value}). `;
         }
 
-        if (document.getElementById("procuracao_seg")?.checked) {
-            texto += `Procuração juntada aos autos (${document.getElementById("rastreio_procuracao_seg").value}). `;
+        if (document.getElementById("procuracao_golpe")?.checked) {
+            texto += `Procuração juntada aos autos (${document.getElementById("rastreio_procuracao_golpe").value}). `;
         }
 
-        document.getElementById("saida_seguro").value = texto.trim();
+        document.getElementById("saida_golpe").value = texto.trim();
     }
 
 
@@ -250,8 +275,9 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (sourceId.includes('cartao')) { analysisType = 'Cobrança Indevida'; }
             else if (sourceId.includes('pasep')) { analysisType = 'PASEP'; }
             else if (sourceId.includes('super')) { analysisType = 'Superendividamento'; }
-            // NOVO: Adicionado tipo para Seguro Prestamista
             else if (sourceId.includes('seguro')) { analysisType = 'Seguro Prestamista'; }
+            // NOVO: Adicionado tipo para Golpe / Fraude
+            else if (sourceId.includes('golpe')) { analysisType = 'Golpe / Fraude'; }
             sendDataToSheet(analysisType, atual);
         } else {
             alert("Nada para salvar. Gere uma análise primeiro.");
@@ -272,8 +298,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btn_gerar_cartao')?.addEventListener('click', gerar_cartao);
     document.getElementById('btn_gerar_pasep')?.addEventListener('click', gerar_pasep);
     document.getElementById('btn_gerar_super')?.addEventListener('click', gerarAnaliseSuper);
-    // NOVO: Adicionado event listener para o botão de Seguro Prestamista
     document.getElementById('btn_gerar_seguro')?.addEventListener('click', gerar_seguro);
+    // NOVO: Adicionado event listener para o botão de Golpe / Fraude
+    document.getElementById('btn_gerar_golpe')?.addEventListener('click', gerar_golpe);
 
 
     // 3. Configura os botões de utilidade (copiar, exportar, salvar)
