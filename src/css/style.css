@@ -128,6 +128,7 @@ textarea {
     background-color: #F8F9FA;
     transition: border-color 0.2s, box-shadow 0.2s;
     font-family: var(--font-main);
+    resize: none;
 }
 
 /* Destaque visual quando um campo está em foco (selecionado) */
