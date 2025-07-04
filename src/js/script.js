@@ -154,72 +154,97 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById("saida_seguro").value = texto.trim();
     }
 
-    // NOVO: Função para gerar a análise de Golpe / Fraude
     function gerar_golpe() {
         let texto = "";
         const rastreioInicial = document.getElementById("rastreio_golpe")?.value;
         const fase = document.getElementById("fase_golpe")?.value;
-
         texto += `BB RÉU – AÇÃO INDENIZATÓRIA POR TRANSFERÊNCIA NÃO RECONHECIDA (${rastreioInicial}) – FASE DE ${fase.toUpperCase()} – `;
         texto += "Autor ajuíza ação alegando ter sido vítima de golpe, com realização de transferência bancária não autorizada via aplicativo ou canal eletrônico do Banco do Brasil. Sustenta que houve falha na segurança do sistema e ausência de mecanismos de proteção da instituição financeira. Pleiteia restituição do valor transferido e indenização por danos morais. ";
+        if (document.getElementById("contestacao_golpe")?.checked) { texto += `Processo distribuído, Contestação Apresentada de maneira tempestiva (${document.getElementById("rastreio_contestacao_golpe").value}). `;
+        } else if (document.getElementById("sem_contestacao_golpe")?.checked) { texto += "Processo distribuído, sem contestação apresentada, pendente de decisão judicial. "; }
+        if (document.getElementById("suspenso_golpe")?.checked) { texto += `Processo suspenso por decisão judicial. (${document.getElementById("rastreio_suspenso_golpe").value}). `;
+        } else if (document.getElementById("nao_suspenso_golpe")?.checked) { texto += "Processo segue em curso. "; }
+        const sentenca = document.getElementById("sentenca_select_golpe")?.value;
+        if (sentenca) { texto += `Sentença proferida, sendo ${sentenca}. (${document.getElementById("rastreio_sentenca_golpe").value}). `;
+        } else if (document.getElementById("sem_sentenca_golpe")?.checked) { texto += "Ainda não houve sentença. "; }
+        if (document.getElementById("apelacao_golpe")?.checked) { texto += `APELAÇÃO INTERPOSTA, (${document.getElementById("rastreio_apelacao_golpe").value}). `; }
+        if (document.getElementById("contrarrazoes_golpe")?.checked) { texto += `Contrarrazões já protocolada, (${document.getElementById("rastreio_contrarrazoes_golpe").value}). `; }
+        const acordao = document.getElementById("acordao_select_golpe")?.value;
+        if (acordao) { texto += `Acórdão, (${document.getElementById("rastreio_acordao_golpe").value}). `; texto += acordao === "procedente" ? "Reformando Sentença. " : "Mantendo Sentença, aguardando Trânsito em julgado. "; }
+        const pe = document.getElementById("pe_golpe")?.value; if (pe) { texto += `Estabelece-se PE em ${pe}% tendo em vista a análise do caso concreto, a robustez da prova da parte autora quanto à fraude e a linha jurisprudencial majoritária sobre responsabilidade objetiva mitigada em casos de golpe praticado por engenharia social, com atuação decisiva do consumidor. `; }
+        const valor = document.getElementById("valor_golpe")?.value; if (valor) { texto += `Valor do pedido é de R$ ${valor}, considerando o valor da transferência impugnada e eventual dano moral postulado. `; }
+        const pcond = document.getElementById("pcond_golpe")?.value; if (pcond) { texto += `PCond estimado em R$ ${pcond}, conforme precedentes locais, grau de instrução da parte autora e eventual identificação de culpa exclusiva da vítima. `; }
+        if (document.getElementById("embargos_golpe")?.checked) { texto += `Foram opostos embargos de declaração, ainda pendentes de análise. (${document.getElementById("rastreio_embargos_golpe").value}). `; }
+        if (document.getElementById("procuracao_golpe")?.checked) { texto += `Procuração juntada aos autos (${document.getElementById("rastreio_procuracao_golpe").value}). `; }
+        document.getElementById("saida_golpe").value = texto.trim();
+    }
 
-        if (document.getElementById("contestacao_golpe")?.checked) {
-            texto += `Processo distribuído, Contestação Apresentada de maneira tempestiva (${document.getElementById("rastreio_contestacao_golpe").value}). `;
-        } else if (document.getElementById("sem_contestacao_golpe")?.checked) {
+    // NOVO: Função para gerar a análise de Vícios Construtivos
+    function gerar_vicios() {
+        let texto = "";
+        const rastreioInicial = document.getElementById("rastreio_vicios")?.value;
+        const fase = document.getElementById("fase_vicios")?.value;
+
+        texto += `BB RÉU – AÇÃO INDENIZATÓRIA DE VÍCIOS CONSTRUTIVOS (${rastreioInicial}) – FASE DE ${fase.toUpperCase()} – `;
+        texto += "Autor ajuíza ação alegando a existência de vícios construtivos no imóvel adquirido por meio de financiamento habitacional, incluindo infiltrações, rachaduras e falhas estruturais. Sustenta que os defeitos comprometem a habitabilidade e segurança do bem. Pleiteia reparação dos danos materiais, morais e eventual abatimento do valor financiado. ";
+
+        if (document.getElementById("contestacao_vicios")?.checked) {
+            texto += `Processo distribuído, Contestação Apresentada de maneira tempestiva (${document.getElementById("rastreio_contestacao_vicios").value}). `;
+        } else if (document.getElementById("sem_contestacao_vicios")?.checked) {
             texto += "Processo distribuído, sem contestação apresentada, pendente de decisão judicial. ";
         }
 
-        if (document.getElementById("suspenso_golpe")?.checked) {
-            texto += `Processo suspenso por decisão judicial. (${document.getElementById("rastreio_suspenso_golpe").value}). `;
-        } else if (document.getElementById("nao_suspenso_golpe")?.checked) {
+        if (document.getElementById("suspenso_vicios")?.checked) {
+            texto += `Processo suspenso por decisão judicial. (${document.getElementById("rastreio_suspenso_vicios").value}). `;
+        } else if (document.getElementById("nao_suspenso_vicios")?.checked) {
             texto += "Processo segue em curso. ";
         }
 
-        const sentenca = document.getElementById("sentenca_select_golpe")?.value;
+        const sentenca = document.getElementById("sentenca_select_vicios")?.value;
         if (sentenca) {
-            texto += `Sentença proferida, sendo ${sentenca}. (${document.getElementById("rastreio_sentenca_golpe").value}). `;
-        } else if (document.getElementById("sem_sentenca_golpe")?.checked) {
+            texto += `Sentença proferida, sendo ${sentenca}. (${document.getElementById("rastreio_sentenca_vicios").value}). `;
+        } else if (document.getElementById("sem_sentenca_vicios")?.checked) {
             texto += "Ainda não houve sentença. ";
         }
         
-        if (document.getElementById("apelacao_golpe")?.checked) {
-            texto += `APELAÇÃO INTERPOSTA, (${document.getElementById("rastreio_apelacao_golpe").value}). `;
+        if (document.getElementById("apelacao_vicios")?.checked) {
+            texto += `APELAÇÃO INTERPOSTA, (${document.getElementById("rastreio_apelacao_vicios").value}). `;
         }
 
-        if (document.getElementById("contrarrazoes_golpe")?.checked) {
-            texto += `Contrarrazões já protocolada, (${document.getElementById("rastreio_contrarrazoes_golpe").value}). `;
+        if (document.getElementById("contrarrazoes_vicios")?.checked) {
+            texto += `Contrarrazões já protocolada, (${document.getElementById("rastreio_contrarrazoes_vicios").value}). `;
         }
         
-        const acordao = document.getElementById("acordao_select_golpe")?.value;
+        const acordao = document.getElementById("acordao_select_vicios")?.value;
         if (acordao) {
-            texto += `Acórdão, (${document.getElementById("rastreio_acordao_golpe").value}). `;
+            texto += `Acórdão, (${document.getElementById("rastreio_acordao_vicios").value}). `;
             texto += acordao === "procedente" ? "Reformando Sentença. " : "Mantendo Sentença, aguardando Trânsito em julgado. ";
         }
 
-        const pe = document.getElementById("pe_golpe")?.value;
+        const pe = document.getElementById("pe_vicios")?.value;
         if (pe) {
-            texto += `Estabelece-se PE em ${pe}% tendo em vista a análise do caso concreto, a robustez da prova da parte autora quanto à fraude e a linha jurisprudencial majoritária sobre responsabilidade objetiva mitigada em casos de golpe praticado por engenharia social, com atuação decisiva do consumidor. `;
+            texto += `Estabelece-se PE em ${pe}% tendo em vista a vinculação contratual entre as partes, a responsabilização subsidiária do agente financeiro e a necessidade de perícia para comprovação da origem e gravidade dos vícios apontados. `;
         }
 
-        const valor = document.getElementById("valor_golpe")?.value;
+        const valor = document.getElementById("valor_vicios")?.value;
         if (valor) {
-            texto += `Valor do pedido é de R$ ${valor}, considerando o valor da transferência impugnada e eventual dano moral postulado. `;
+            texto += `Valor do pedido é de R$ ${valor}, com base no custo estimado de reparo, eventual abatimento contratual e danos morais pleiteados. `;
         }
 
-        const pcond = document.getElementById("pcond_golpe")?.value;
+        const pcond = document.getElementById("pcond_vicios")?.value;
         if (pcond) {
-            texto += `PCond estimado em R$ ${pcond}, conforme precedentes locais, grau de instrução da parte autora e eventual identificação de culpa exclusiva da vítima. `;
+            texto += `PCond estimado em R$ ${pcond}, considerando o entendimento jurisprudencial que diferencia obrigações do banco e da construtora no contrato de financiamento habitacional. `;
         }
         
-        if (document.getElementById("embargos_golpe")?.checked) {
-            texto += `Foram opostos embargos de declaração, ainda pendentes de análise. (${document.getElementById("rastreio_embargos_golpe").value}). `;
+        if (document.getElementById("embargos_vicios")?.checked) {
+            texto += `Foram opostos embargos de declaração, ainda pendentes de análise. (${document.getElementById("rastreio_embargos_vicios").value}). `;
         }
 
-        if (document.getElementById("procuracao_golpe")?.checked) {
-            texto += `Procuração juntada aos autos (${document.getElementById("rastreio_procuracao_golpe").value}). `;
+        if (document.getElementById("procuracao_vicios")?.checked) {
+            texto += `Procuração juntada aos autos (${document.getElementById("rastreio_procuracao_vicios").value}). `;
         }
 
-        document.getElementById("saida_golpe").value = texto.trim();
+        document.getElementById("saida_vicios").value = texto.trim();
     }
 
 
@@ -276,8 +301,9 @@ document.addEventListener('DOMContentLoaded', () => {
             else if (sourceId.includes('pasep')) { analysisType = 'PASEP'; }
             else if (sourceId.includes('super')) { analysisType = 'Superendividamento'; }
             else if (sourceId.includes('seguro')) { analysisType = 'Seguro Prestamista'; }
-            // NOVO: Adicionado tipo para Golpe / Fraude
-            else if (sourceId.includes('golpe')) { analysisType = 'Golpe / Fraude'; }
+            else if (sourceId.includes('golpe')) { analysisType = 'Golpe'; }
+            // NOVO: Adicionado tipo para Vícios Construtivos
+            else if (sourceId.includes('vicios')) { analysisType = 'Vícios Construtivos'; }
             sendDataToSheet(analysisType, atual);
         } else {
             alert("Nada para salvar. Gere uma análise primeiro.");
@@ -299,8 +325,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('btn_gerar_pasep')?.addEventListener('click', gerar_pasep);
     document.getElementById('btn_gerar_super')?.addEventListener('click', gerarAnaliseSuper);
     document.getElementById('btn_gerar_seguro')?.addEventListener('click', gerar_seguro);
-    // NOVO: Adicionado event listener para o botão de Golpe / Fraude
     document.getElementById('btn_gerar_golpe')?.addEventListener('click', gerar_golpe);
+    // NOVO: Adicionado event listener para o botão de Vícios Construtivos
+    document.getElementById('btn_gerar_vicios')?.addEventListener('click', gerar_vicios);
 
 
     // 3. Configura os botões de utilidade (copiar, exportar, salvar)
