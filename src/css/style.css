@@ -1,0 +1,365 @@
+/* Variáveis globais (cores, fontes, sombras) para todo o site */
+:root {
+    /* Paleta de cores principal (baseado em BB) */
+    --bb-yellow: #FFEC00;
+    --bb-blue: #0033A0;
+    --bb-blue-light: #0056D9;
+    
+    /* Cores de texto */
+    --text-primary: #212529; /* Texto principal */
+    --text-secondary: #5a6169; /* Texto secundário (ex: labels) */
+    --text-on-accent: #0033A0; /* Texto sobre fundo de destaque (amarelo) */
+    --text-on-dark: #FFFFFF;   /* Texto sobre fundo escuro (azul) */
+
+    /* Cores de fundo e bordas */
+    --bg-light: #F4F6F9;
+    --bg-white: #FFFFFF;
+    --border-color: #DDE2E8;
+    --border-focus: #8ab4f8; /* Cor da borda em foco */
+
+    /* Sombras */
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    --shadow-lg: 0 8px 25px rgba(0, 0, 0, 0.1);
+
+    /* Raios de borda (arredondamento) */
+    --radius-sm: 8px;
+    --radius-md: 16px;
+    
+    /* Fontes */
+    --font-main: 'Poppins', Arial, sans-serif;
+}
+
+/* Estilos base para o corpo do documento */
+body {
+    font-family: var(--font-main);
+    background-color: var(--bg-light);
+    color: var(--text-primary);
+    margin: 0;
+    padding: 20px 10px;
+}
+
+/* Estilo do cabeçalho principal */
+header {
+    max-width: 900px;
+    margin: 0 auto 0px auto;
+    text-align: center;
+}
+
+/* Estilo do título principal (H1) */
+h1 {
+    background-color: var(--bg-white);
+    color: var(--bb-blue);
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding: 20px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    border-bottom: 4px solid var(--bb-yellow);
+}
+
+/* Logo decorativo no canto, sem interação */
+.logo {
+    position: fixed; 
+    top: 60px;          
+    right: 20px;          
+    width: 120px;   
+    height: auto;   
+    z-index: -1;      /* Fica atrás do conteúdo */ 
+    opacity: 0.2;     /* Deixa a imagem transparente */
+    pointer-events: none; /* Impede cliques na imagem */
+} 
+
+/* Estilo dos subtítulos (H2) */
+h2 {
+    text-align: center;
+    color: var(--bb-blue);
+    border-bottom: 2px solid var(--bb-yellow);
+    padding-bottom: 10px;
+    margin-top: 0;
+    margin-bottom: 30px;
+    font-size: 1.5rem;
+}
+
+/* Contêiner principal para agrupar conteúdo */
+.container {
+    padding: 30px;
+    max-width: 900px;
+    border-radius: var(--radius-md);
+    margin: auto auto 20px auto;
+    background-color: var(--bg-white);
+    box-shadow: var(--shadow);
+}
+
+/* Agrupa um rótulo (label) e um campo (input) */
+.field-group {
+    margin-bottom: 20px;
+}
+
+/* Layout em grade com 2 colunas responsivas */
+.grid-2-cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Estilo dos rótulos dos campos */
+.field-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Estilo padrão para campos de formulário */
+.field-group input[type="text"],
+.field-group input[type="number"],
+.field-group select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    box-sizing: border-box; /* Garante que padding não afete a largura total */
+    background-color: #F8F9FA;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    font-family: var(--font-main);
+}
+
+/* Destaque visual quando um campo está em foco (selecionado) */
+.field-group input[type="text"]:focus,
+.field-group input[type="number"]:focus,
+.field-group select:focus,
+textarea:focus {
+    outline: none;
+    border-color: var(--bb-blue);
+    box-shadow: 0 0 0 3px var(--border-focus);
+}
+
+/* Grade para organizar múltiplos checkboxes */
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 15px;
+}
+
+/* Estilo para cada item individual de checkbox */
+.checkbox-item {
+    background-color: var(--bg-light);
+    padding: 15px;
+    border-radius: var(--radius-sm);
+    border: 1px solid #e9ecef;
+}
+
+/* Estilo do rótulo dentro de um item de checkbox */
+.checkbox-item > label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+/* Estilo da caixa de seleção */
+.checkbox-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--bb-blue);
+    flex-shrink: 0; /* Impede que o checkbox encolha */
+}
+
+/* Estilo para campos de texto opcionais dentro dos checkboxes */
+.checkbox-item input[type="text"] {
+    margin-top: 4px;
+}
+
+/* Classe utilitária para esconder elementos */
+.hidden { 
+    display: none; 
+}
+
+/* Contêiner para os botões de seleção de análise */
+#analysis-selector-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap; /* Permite que os botões quebrem a linha em telas menores */
+}
+
+/* Botão de seleção de análise com efeito de preenchimento */
+.analysis-btn {
+    /* Define as cores padrão e ativa do botão */
+    --color-default: var(--text-on-accent);
+    --background-default: var(--bb-yellow);
+    --border-default: var(--bb-yellow);
+    --color-active: var(--text-on-dark);
+    --active-back: var(--bb-blue);
+
+    flex-grow: 1; /* Faz o botão ocupar o espaço disponível */
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    border: 2px solid var(--border-default);
+    cursor: pointer;
+    position: relative; /* Necessário para o pseudo-elemento :before */
+    overflow: hidden; /* Esconde a animação fora do botão */
+    appearance: none;
+    background: var(--background-default);
+    color: var(--color-default);
+    transition: all 0.3s ease;
+}
+
+/* Efeito de elevação ao passar o mouse (se não estiver ativo) */
+.analysis-btn:hover:not(.active) {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+/* Pseudo-elemento usado para a animação de preenchimento */
+.analysis-btn:before {
+    content: '';
+    position: absolute;
+    background: var(--active-back);
+    top: 0; left: 0; right: 0;
+    height: 100%;
+    transform: translateY(100%); /* Começa escondido abaixo */
+    transition: transform 0.4s ease-in-out;
+    z-index: 0;
+}
+
+/* Garante que o texto fique acima da animação */
+.analysis-btn span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Estilo do botão quando está selecionado (ativo) */
+.analysis-btn.active {
+    color: var(--color-active);
+    border-color: var(--active-back);
+}
+
+/* Ativa a animação de preenchimento */
+.analysis-btn.active:before {
+    transform: translateY(0);
+}
+
+/* Contêiner para botões de ação (ex: Salvar, Cancelar) */
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* Estilo padrão para botões de ação secundários */
+.action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-white);
+    color: var(--text-secondary);
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Efeito ao passar o mouse sobre botões de ação */
+.action-btn:hover {
+    background-color: var(--bb-blue);
+    color: var(--text-on-dark);
+    border-color: var(--bb-blue);
+    transform: translateY(-2px);
+}
+
+/* Botão de destaque principal (call-to-action) */
+.btn-principal {
+    background-color: var(--bb-blue);
+    color: var(--text-on-dark);
+    border-color: var(--bb-blue);
+    font-size: 1.1rem;
+    padding: 15px 30px;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+/* Efeito ao passar o mouse no botão principal */
+.btn-principal:hover {
+    background-color: var(--bb-blue-light);
+    border-color: var(--bb-blue-light);
+    box-shadow: var(--shadow);
+}
+
+/* Ajustes para telas menores (tablets e celulares) */
+@media (max-width: 768px) {
+    body { padding: 10px 5px; }
+    h1 { font-size: 1.5rem; }
+    .container { padding: 20px; }
+    /* Faz as grades de 2 colunas virarem de 1 coluna */
+    .grid-2-cols, .checkbox-group { grid-template-columns: 1fr; }
+    /* Empilha os botões de ação verticalmente */
+    .action-buttons { flex-direction: column; }
+    .action-btn { width: 100%; }
+}
+
+/* --- ESTILOS PARA A PÁGINA HUB --- */
+
+/* Contêiner para os cards */
+.hub-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Estilo de cada card de navegação */
+.hub-card {
+    background-color: var(--bg-white);
+    padding: 25px 30px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow);
+    text-decoration: none; /* Remove o sublinhado do link */
+    color: var(--text-primary);
+    border-left: 5px solid var(--bb-blue);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hub-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.hub-card h3 {
+    margin: 0 0 10px 0;
+    color: var(--bb-blue);
+    font-size: 1.3rem;
+}
+
+.hub-card p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 1rem;
+}
+
+/* Estilo para cards de ferramentas futuras (desabilitado) */
+.hub-card-disabled {
+    border-left-color: var(--border-color);
+    background-color: #fcfcfc;
+    pointer-events: none; /* Impede o clique */
+}
+
+.hub-card-disabled h3,
+.hub-card-disabled p {
+    color: var(--border-color);
+}
