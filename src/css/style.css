@@ -333,12 +333,14 @@ textarea:focus {
     text-decoration: none; /* Remove o sublinhado do link */
     color: var(--text-primary);
     border-left: 5px solid var(--bb-blue);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-left-color 0.3s ease;
 }
 
 .hub-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-5px); /* Mantive o seu efeito de elevação */
     box-shadow: var(--shadow-lg);
+    border-left-color: var(--bb-blue-light); /* Destaque amarelo ao passar o mouse */
+    cursor: pointer; /* Melhora de UX: indica que todo o card é clicável */
 }
 
 .hub-card h3 {
@@ -363,4 +365,19 @@ textarea:focus {
 .hub-card-disabled h3,
 .hub-card-disabled p {
     color: var(--border-color);
+}
+
+/* --- RODAPÉ (FOOTER) --- */
+footer {
+    max-width: 900px;         
+    margin: 40px auto 20px auto; 
+    padding-top: 20px;
+    text-align: center;
+    border-top: 1px solid var(--border-color); 
+    color: var(--text-secondary); 
+    font-size: 0.9rem;       
+}
+
+footer p {
+    margin: 5px 0;            
 }
