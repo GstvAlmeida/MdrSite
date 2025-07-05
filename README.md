@@ -8,7 +8,9 @@ Com ele, é possível gerar textos padronizados para diferentes tipos de casos, 
 
 O painel oferece uma suíte de ferramentas especializadas para diferentes áreas do direito:
 
-* **Gerador de Análise de Risco:** Um módulo completo que inclui sub-análises para os casos de **Tarifa**, **Cobrança Indevida** e **PASEP**.
+* **Análise de Tarifa:** Ferramenta para gerar relatórios em casos de cobrança indevida de pacotes de serviços.
+* **Análise de Cobrança Indevida:** Gera relatórios para casos de cobranças indevidas em cartões de crédito.
+* **Análise de PASEP:** Ferramenta para casos de desfalque ou ausência de atualização monetária em contas PASEP.
 * **Análise de Superendividamento:** Cria relatórios específicos com base na Lei do Superendividamento.
 * **Análise de Seguro Prestamista:** Focado em casos de contratação indevida de seguro.
 * **Análise de Golpe / Fraude:** Gera textos para ações indenizatórias relacionadas a golpes e transferências não reconhecidas.
@@ -26,8 +28,7 @@ O painel oferece uma suíte de ferramentas especializadas para diferentes áreas
 O fluxo de trabalho foi projetado para ser rápido e eficiente:
 
 1.  **Acesse o Painel Principal:** Na página inicial, você verá os cards de todas as ferramentas disponíveis.
-2.  **Selecione a Ferramenta:** Clique no card correspondente à análise que deseja realizar (ex: "Análise de Golpe").
-3.  **Escolha a Sub-Análise (se aplicável):** Em ferramentas como o "Gerador de Análise de Risco", você deverá selecionar o tipo específico no topo da página ("Tarifa", "Cobrança Indevida" ou "PASEP").
-4.  **Preencha as Informações:** Complete os campos do formulário e marque as opções que se aplicam ao seu caso.
-5.  **Gere a Análise:** Clique no botão principal **"Gerar Análise"**.
-6.  **Utilize o Texto:** A análise aparecerá na aba **"Análise Gerada"**. Você pode usar os botões no cabeçalho desta seção para **Copiar**, **Exportar** ou **Salvar**. Ao clicar em "Salvar", o texto é movido para a aba **"Histórico"** para consultas futuras.
+2.  **Selecione a Ferramenta:** Clique no card correspondente à análise que deseja realizar (ex: "Análise de Tarifa").
+3.  **Preencha as Informações:** Complete os campos do formulário e marque as opções que se aplicam ao seu caso.
+4.  **Gere a Análise:** Clique no botão principal **"Gerar Análise"**.
+5.  **Utilize o Texto:** A análise aparecerá na aba **"Análise Gerada"**. Você pode usar os botões no cabeçalho desta seção para **Copiar**, **Exportar** ou **Salvar**. Ao clicar em "Salvar", o texto é movido para a aba **"Histórico"** para consultas futuras.

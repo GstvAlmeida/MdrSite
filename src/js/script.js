@@ -1,20 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Gerencia a troca de formulários na página de Análise de Risco.
-    const analysisForms = document.querySelectorAll('.analysis-form');
-    const analysisButtons = document.querySelectorAll('.analysis-btn');
-
-    function mostrarFormulario(targetFormId) {
-        if (analysisButtons.length === 0) return;
-        analysisForms.forEach(form => form.classList.add('hidden'));
-        analysisButtons.forEach(button => button.classList.remove('active'));
-        const formToShow = document.getElementById(targetFormId);
-        const buttonToActivate = document.querySelector(`[data-form-id="${targetFormId}"]`);
-        if (formToShow) formToShow.classList.remove('hidden');
-        if (buttonToActivate) buttonToActivate.classList.add('active');
-    }
-
-
     /* --- MÁSCARA MONETÁRIA (IMask.js) --- */
     
     const maskedInputs = {};
@@ -382,6 +367,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const tabButtons = document.querySelectorAll('.tab-btn');
     tabButtons.forEach(button => {
         button.addEventListener('click', function() {
+            // Garante que a lógica funcione apenas dentro do painel de resultados correto.
             const currentPanel = this.closest('.results-panel');
             if (!currentPanel) return;
 
@@ -393,13 +379,15 @@ document.addEventListener('DOMContentLoaded', () => {
             localPanes.forEach(pane => pane.classList.remove('active'));
             
             this.classList.add('active');
+            // O ID do painel é formado por "tab-" + o valor de data-tab do botão.
             const targetPaneId = `tab-${this.getAttribute('data-tab')}`;
-            const targetPane = currentPanel.querySelector(`#${targetPaneId}`);
+            const targetPane = Array.from(localPanes).find(pane => pane.id === targetPaneId);
 
             if (targetPane) {
                 targetPane.classList.add('active');
             }
 
+            // Mostra ou esconde os botões de ação conforme a aba.
             if (this.getAttribute('data-tab') === 'historico') {
                 if(localActionButtons) localActionButtons.style.display = 'none';
             } else {
