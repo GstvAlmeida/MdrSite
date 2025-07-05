@@ -91,19 +91,26 @@
     
     <button id="btn_gerar_super" class="action-btn btn-principal">Gerar Análise</button>
     
-    <div class="field-group">
-        <label for="saida_super">Análise Gerada</label>
-        <textarea id="saida_super" placeholder="A análise de risco será exibida aqui..." rows="10"></textarea>
-        <div class="action-buttons">
-            <button class="action-btn btn_copiar" data-target="saida_super">📋 Copiar Análise</button>
-            <button class="action-btn btn_exportar" data-target="saida_super">💾 Exportar .txt</button>
-            <button class="action-btn btn_salvar" data-target="saida_super" data-history="historico_super">📚 Salvar no Histórico</button>
+    <div class="results-panel">
+        <div class="results-header">
+            <div class="results-tabs">
+                <button class="tab-btn active" data-tab="analise">Análise Gerada</button>
+                <button class="tab-btn" data-tab="historico">Histórico</button>
+            </div>
+            <div class="action-buttons">
+                <button class="action-btn btn_copiar" data-target="saida_super">📋 Copiar</button>
+                <button class="action-btn btn_exportar" data-target="saida_super">💾 Exportar</button>
+                <button class="action-btn btn_salvar" data-target="saida_super" data-history="historico_super">📚 Salvar</button>
+            </div>
         </div>
-    </div>
-    
-    <div class="field-group">
-        <label for="historico_super">Histórico</label>
-        <textarea id="historico_super" placeholder="Histórico de análises salvas para 'Superendividamento'..." rows="8"></textarea>
+        <div class="results-content">
+            <div id="tab-analise" class="tab-pane active">
+                <textarea id="saida_super" placeholder="A análise de risco será exibida aqui..." rows="12"></textarea>
+            </div>
+            <div id="tab-historico" class="tab-pane">
+                <textarea id="historico_super" placeholder="Histórico de análises salvas para 'Superendividamento'..." rows="12"></textarea>
+            </div>
+        </div>
     </div>
 </div>
 
