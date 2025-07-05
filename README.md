@@ -1,21 +1,33 @@
-# Gerador de Análise de Risco
+# Painel de Ferramentas Jurídicas
 
-Este site foi criado para simplificar e agilizar a criação de resumos para processos jurídicos. O objetivo é transformar uma tarefa repetitiva em um processo de poucos cliques.
+Este site foi criado para simplificar e agilizar a criação de resumos para processos jurídicos. O objetivo é transformar tarefas repetitivas em um processo de poucos cliques, centralizando diversas ferramentas em um único lugar.
 
-Com ele, é possível gerar textos padronizados para diferentes tipos de casos, garantindo consistência e economizando um tempo valioso.
+Com ele, é possível gerar textos padronizados para diferentes tipos de casos, garantindo consistência, organização e economizando um tempo valioso.
 
-## O que ele faz?
+## Ferramentas Disponíveis
 
-* **Cria Textos Prontos:** Basta preencher os campos do formulário e a ferramenta monta um parágrafo de análise de risco automaticamente.
-* **Diferentes Tipos de Análise:** Possui formulários separados para casos de **Tarifa**, **Cobrança Indevida** e **PASEP**.
-* **Fácil de Usar:** Oferece botões para copiar o texto gerado, baixar como um arquivo `.txt` ou salvar em um histórico na própria tela.
-* **Registro Automático:** Para fins de organização, toda análise salva é registrada em uma planilha particular do Google. Isso ajuda a manter um backup e a entender quais tipos de casos são mais frequentes.
+O painel oferece uma suíte de ferramentas especializadas para diferentes áreas do direito:
 
-## Como Usar:
+* **Gerador de Análise de Risco:** Um módulo completo que inclui sub-análises para os casos de **Tarifa**, **Cobrança Indevida** e **PASEP**.
+* **Análise de Superendividamento:** Cria relatórios específicos com base na Lei do Superendividamento.
+* **Análise de Seguro Prestamista:** Focado em casos de contratação indevida de seguro.
+* **Análise de Golpe / Fraude:** Gera textos para ações indenizatórias relacionadas a golpes e transferências não reconhecidas.
+* **Análise de Vícios Construtivos:** Ferramenta para casos de vícios construtivos em imóveis financiados.
 
-1.  **Escolha o Tipo de Análise:** Clique em um dos botões no topo da página ("Tarifa", "Cobrança Indevida" ou "PASEP").
-2.  **Preencha as Informações:** Complete os campos e marque as opções que se aplicam ao seu caso.
-3.  **Gere a Análise:** Clique no botão **"Gerar Análise"**.
-4.  **Utilize o Texto:** O texto pronto aparecerá na tela. Agora você pode usar os botões para **Copiar**, **Exportar** ou **Salvar no Histórico** para consultas futuras.
+## Principais Funcionalidades
 
-É simples assim! Uma ferramenta pensada para otimizar o dia a dia.
+* **Criação Automática de Texto:** Basta preencher os campos do formulário e a ferramenta monta um parágrafo de análise de risco completo e padronizado.
+* **Interface Moderna com Abas:** As análises geradas e o histórico são organizados em abas ("Análise Gerada" e "Histórico"), mantendo a tela limpa e o acesso à informação mais intuitivo.
+* **Ações Rápidas:** Botões para **Copiar** o texto gerado, baixar como um arquivo `.txt` (**Exportar**) ou **Salvar** na aba de histórico ficam convenientemente localizados no cabeçalho da área de resultados.
+* **Registro Automático:** Para fins de organização e backup, toda análise salva é registrada de forma privada em uma planilha do Google, ajudando a manter um controle sobre os tipos de casos mais frequentes.
+
+## Como Usar
+
+O fluxo de trabalho foi projetado para ser rápido e eficiente:
+
+1.  **Acesse o Painel Principal:** Na página inicial, você verá os cards de todas as ferramentas disponíveis.
+2.  **Selecione a Ferramenta:** Clique no card correspondente à análise que deseja realizar (ex: "Análise de Golpe").
+3.  **Escolha a Sub-Análise (se aplicável):** Em ferramentas como o "Gerador de Análise de Risco", você deverá selecionar o tipo específico no topo da página ("Tarifa", "Cobrança Indevida" ou "PASEP").
+4.  **Preencha as Informações:** Complete os campos do formulário e marque as opções que se aplicam ao seu caso.
+5.  **Gere a Análise:** Clique no botão principal **"Gerar Análise"**.
+6.  **Utilize o Texto:** A análise aparecerá na aba **"Análise Gerada"**. Você pode usar os botões no cabeçalho desta seção para **Copiar**, **Exportar** ou **Salvar**. Ao clicar em "Salvar", o texto é movido para a aba **"Histórico"** para consultas futuras.
