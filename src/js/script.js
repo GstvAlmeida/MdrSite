@@ -56,6 +56,24 @@ document.addEventListener('DOMContentLoaded', () => {
     applyCurrencyMask('valor_vicios');
     applyCurrencyMask('pcond_vicios');
 
+    // --- LÓGICA PARA BLOQUEAR CARACTERES INVÁLIDOS NOS INPUTS DE PE (%) ---
+
+    // Seleciona todos os inputs relacionados pela classe 'num-input' que você adicionou.
+    const peInputs = document.querySelectorAll('.num-input');
+
+    // Para cada um desses inputs, adiciona a lógica de bloqueio.
+    peInputs.forEach(input => {
+        input.addEventListener('keydown', (event) => {
+            // Bloqueia a digitação das teclas 'e', 'E', '+', '-', ',' e '.'
+            // que são permitidas por padrão em campos type="number".
+            const invalidKeys = ['e', 'E', '+', '-', ',', '.'];
+
+            if (invalidKeys.includes(event.key)) {
+                event.preventDefault();
+            }
+        });
+    });
+
     // --- FUNÇÕES DE GERAÇÃO DE TEXTO ---
 
     function gerar_tarifa() {
